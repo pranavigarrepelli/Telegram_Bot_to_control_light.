@@ -1,1 +1,1 @@
-worker: python pranu-proj-intern.py
+worker: python pranavi-project-intern.py
