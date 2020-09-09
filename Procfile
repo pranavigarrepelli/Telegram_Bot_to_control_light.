@@ -1,1 +1,1 @@
-worker: python pranavi-project-intern.py
+worker: python twitter-bot-major-project-intern.py
