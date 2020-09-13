@@ -1,1 +1,1 @@
-worker: python twitter-bot-major-project.py
+worker: python telegram-bot-major-project.py
