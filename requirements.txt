@@ -1,1 +1,4 @@
-
+os
+requests
+adafruit-io
+python-telegram-bot
