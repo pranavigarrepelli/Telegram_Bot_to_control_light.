@@ -38,7 +38,7 @@ ADAFRUIT_IO_USERNAME = os.getenv('pranu413')
 ADAFRUIT_IO_KEY = os.getenv('aio_KBhk859bmIjXvPML1DnIbJTmnwbE')
 TOKEN = os.getenv('1304660679:AAEsdvwPDs79CZ7ioyO5Ybh67gGR1n275VA')
 aio = Client(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
-updater=Updater(TOKEN,use_context=True)
+updater=Updater(TOKEN)
 dispatcher = updater.dispatcher
 dispatcher.add_handler(CommandHandler('turnoff',turnoff))
 dispatcher.add_handler(CommandHandler('turnon',turnon))
