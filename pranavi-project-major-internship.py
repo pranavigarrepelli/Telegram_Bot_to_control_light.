@@ -1,7 +1,7 @@
 from Adafruit_IO import Client,Data
 import os
-x = os.getenv('x') #ADAFRUIT_IO_USERNAME
-y = os.getenv('y') #ADAFRUIT_IO_KEY
+x = os.getenv('pranu413') #ADAFRUIT_IO_USERNAME
+y = os.getenv('aio_lPIG73Kw7AD5swnjGsdQZ3iBCI8C') #ADAFRUIT_IO_KEY
 
 
 from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
@@ -35,7 +35,7 @@ def input_message(bot,update):
       value=Data(value=0)
       value_send=aio.create_data('lightbot',value)
       
-Token=os.getenv(Token)   
+Token=os.getenv('1049056873:AAG58ewf5tTJ3w7fQrRDXlAcKO5qppHOpaY')   
 u = Updater(Token)
 dp = u.dispatcher
 dp.add_handler(CommandHandler('turnon',turnon))
