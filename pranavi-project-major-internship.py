@@ -1,5 +1,7 @@
 from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from Adafruit_IO import Client,Data
+from telegram import Update
+import requests
 import os
 
 def turnoff(update, context):
