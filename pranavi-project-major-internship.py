@@ -1,4 +1,3 @@
-
 from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from Adafruit_IO import Client,Data
 import os
@@ -37,9 +36,8 @@ def start(update,context):
 ADAFRUIT_IO_USERNAME = os.getenv('pranu413')
 ADAFRUIT_IO_KEY = os.getenv('aio_yMag40iDlwZN8laJ2uWO1TZnstSU')
 TOKEN = os.getenv('1304660679:AAEsdvwPDs79CZ7ioyO5Ybh67gGR1n275VA')
-
 aio = Client(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
-updater=Updater(TOKEN)
+updater=Updater(TOKEN,use_context=True)
 dispatcher = updater.dispatcher
 dispatcher.add_handler(CommandHandler('turnoff',turnoff))
 dispatcher.add_handler(CommandHandler('turnon',turnon))
