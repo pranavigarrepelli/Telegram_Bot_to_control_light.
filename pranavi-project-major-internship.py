@@ -1,7 +1,5 @@
 from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from Adafruit_IO import Client,Data
-from telegram import Update
-import requests
 import os
 
 def turnoff(update, context):
@@ -35,9 +33,9 @@ def start(update,context):
 '''
   context.bot.send_message(chat_id=update.effective_chat.id, text=start_message)
 
-ADAFRUIT_IO_USERNAME = os.getenv('pranu413')
-ADAFRUIT_IO_KEY = os.getenv('aio_yMag40iDlwZN8laJ2uWO1TZnstSU')
-TOKEN = os.getenv('1304660679:AAEsdvwPDs79CZ7ioyO5Ybh67gGR1n275VA')
+ADAFRUIT_IO_USERNAME = os.getenv('ADAFRUIT_IO_USERNAME')
+ADAFRUIT_IO_KEY = os.getenv('ADAFRUIT_IO_KEY')
+TOKEN = os.getenv('TOKEN')
 aio = Client(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
 updater=Updater(TOKEN,use_context=True)
 dispatcher = updater.dispatcher
