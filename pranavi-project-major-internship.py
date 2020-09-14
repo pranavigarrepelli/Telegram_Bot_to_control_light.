@@ -1,52 +1,45 @@
-!pip install python-telegram-bot
-!pip install adafruit-io
-from telegram import Update
-import requests
-from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from Adafruit_IO import Client,Data
 import os
+x = os.getenv('x') #ADAFRUIT_IO_USERNAME
+y = os.getenv('y') #ADAFRUIT_IO_KEY
 
-def turnoff(update, context):
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Led turned off")
-  context.bot.send_photo(chat_id=update.effective_chat.id,photo='https://pngimg.com/uploads/bulb/bulb_PNG1241.png')
-  send_value(0)
-def turnon(update, context):
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Led turned on")
-  context.bot.send_photo(chat_id=update.effective_chat.id,photo='https://img.icons8.com/plasticine/2x/light-on.png')
-  send_value(1)
 
-def send_value(value):
-  feed = aio.feeds('light')
-  aio.send_data(feed.key,value)
-
-def input_message(update, context):
-  text=update.message.text
-  if text == 'turn on':
-    send_value(1)
-    context.bot.send_message(chat_id=update.effective_chat.id,text="Led turned on")
-    context.bot.send_photo(chat_id=update.effective_chat.id,photo='https://img.icons8.com/plasticine/2x/light-on.png')
-  elif text == 'turn off':
-    send_value(0)
-    context.bot.send_message(chat_id=update.effective_chat.id,text="Led turned off")
-    context.bot.send_photo(chat_id=update.effective_chat.id,photo='https://pngimg.com/uploads/bulb/bulb_PNG1241.png')
-
-def start(update,context):
-  start_message='''
-/turnoff or 'turn off':To turn of the led ,sends value=0 in feed
-/turnon or 'turn on'  :To turn on the led ,sends value=1 in feed
-'''
-  context.bot.send_message(chat_id=update.effective_chat.id, text=start_message)
-
-ADAFRUIT_IO_USERNAME = os.getenv('pranu413')
-ADAFRUIT_IO_KEY = os.getenv('aio_iTHL61ez8rT4ZQaOvwMo96hK6Tfh')
-TOKEN = os.getenv('1049056873:AAG58ewf5tTJ3w7fQrRDXlAcKO5qppHOpaY')
-
-aio = Client(ADAFRUIT_IO_USERNAME,ADAFRUIT_IO_KEY)
-updater=Updater(TOKEN,use_context=True)
-dispatcher = updater.dispatcher
-dispatcher.add_handler(CommandHandler('turnoff',turnoff))
-dispatcher.add_handler(CommandHandler('turnon',turnon))
-dispatcher.add_handler(CommandHandler('start',start))
-dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command),input_message))
-updater.start_polling()
-updater.idle()
+from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
+import requests
+def turnon(bot,update):
+ 
+    chat_id = update.message.chat_id
+    bot.send_message(chat_id,text="Light turned on")
+    bot.send_photo(chat_id,photo='https://images.app.goo.gl/vboPtjpGbD3iUTrf6')
+def turnoff(bot,update):
+ 
+    chat_id = update.message.chat_id
+    bot.send_message(chat_id,text="Light turned off")
+    bot.send_photo(chat_id,photo='https://images.app.goo.gl/cU8fsGt7sSjdKS4b8')
+    
+def input_message(bot,update):
+   text=update.message.text
+   if text == 'turn on':
+      chat_id = update.message.chat_id
+      bot.send_message(chat_id,text="Light turned on")
+      bot.send_photo(chat_id,photo='https://images.app.goo.gl/vboPtjpGbD3iUTrf6')
+      value=Data(value=1)
+      value_send=aio.create_data('lightbot',value)
+      
+      
+      
+   elif text=='turn off': 
+      chat_id = update.message.chat_id
+      bot.send_message(chat_id,text="Light turned off")
+      bot.send_photo(chat_id,photo='https://images.app.goo.gl/cU8fsGt7sSjdKS4b8')
+      value=Data(value=0)
+      value_send=aio.create_data('lightbot',value)
+      
+Token=os.getenv(Token)   
+u = Updater(Token)
+dp = u.dispatcher
+dp.add_handler(CommandHandler('turnon',turnon))
+dp.add_handler(CommandHandler('turnoff',turnoff))
+dp.add_handler(MessageHandler(Filters.text & (~Filters.command),input_message))
+u.start_polling()
+u.idle() 
